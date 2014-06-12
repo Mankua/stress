@@ -1,0 +1,57 @@
+=Stress User's Guide=
+
+Stress is a Texture map plugin that composes 3 different maps using the compression and strain of the mesh object to which it is aplied.
+Stress is ideal for character animation with morph plugins, it can parametricaly change the mapping while your character talkes or moves, allowing you to hide wrinkles and bumps when the skin is strained, and show them when it is compressed or relaxed.
+Stress works with all map channels. However, in the bump channel it can only composse between maps, color information is discarded by the bump channel.
+
+==Stress Parameters==
+
+'''Reference Mapping Channel.'''
+The mapping channel which stores the original shape of the object. This channel must be an XYZ mapping channel. If 0 it uses the vertex color channel.
+
+'''Show. (Tension-Compression-Summatory)'''
+Which deformation does Stress show.
+
+'''Max Stress.'''
+The maximum stress value used to compute the gradient. 
+
+'''Compute stress using all edges.'''
+Stress information is computed per vertex using the edges of the faces it shares. All edges uses also invisible edges to compute stress information.
+
+===Stress maps, colors and map/color toggle.===
+
+'''Relax:''' The map that will be shown in unstressed zones.
+'''Tension:''' The map that will be shown zones under tension.
+'''Compression:''' The map that will be shown in zones under compression.
+
+'''Mix Falloff.'''
+Controls how the stress gradient is displayed.
+
+=Stress Tutorial=
+
+1. Create a cylinder and set the following parameters:
+Radius: 30
+Height: 120
+Height Segments: 15
+Sides: 25
+
+2. Add a UVW Map modifier to the cylinder and set the mapping channel type to XYZ to UVW.
+This is a very important step. XYZ mapping type copies the geometrical channel to the first mapping channel. Stress needs the geometrical channel to know how was the object before any modifier was applied to it. The XYZ mapping channel must be applied before any modifier.
+
+3. Add a new material to the cylinder, click the diffuse map button and select a Stress map as the diffuse map.
+
+4. Render your scene.
+The cylinder is completely green. In other words, it is completely relaxed, there are no tensiones or comprssed zones.
+
+5. Apply a bend modifier to the cylinder and set the angle to 115 and render again.
+Now the cylinder is mostly green, but it has red (tensioned) zones.
+
+6. In the Stress Panel, set the Max Stress to 30 and render again.
+Now you can see better the strained zones. A Stress of 100% happens when all the edges that a vertex share are twice long (tensioned) or half long (compressed).
+
+7. In the Stress Panel, change the Show type to Summatory, to show both tensioned and compressed zones, and render again.
+
+8. In the Stress Panel, change the Mix Falloff to 1.0 and render again.
+Mix Falloff controls the gradient in the stressed zones.
+
+9. Animate the bend angle and see how the stress map changes automatically with the mesh.

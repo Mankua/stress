@@ -1,0 +1,257 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,0,0,0
+ PRODUCTVERSION 3,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "TECH: harry.denholm"
+            VALUE "CompanyName", "Kinetix, a division of Autodesk, Inc."
+            VALUE "FileDescription", "Skeleton Plugin"
+            VALUE "FileVersion", "3.0.0.0"
+            VALUE "InternalName", "Skeleton"
+            VALUE "LegalCopyright", "Copyright © 1998 Autodesk Inc."
+            VALUE "LegalTrademarks", "The following are registered trademarks of Autodesk, Inc.: 3D Studio MAX.  The following are trademarks of Autodesk, Inc.: Kinetix, Kinetix(logo), BIPED, Physique, Character Studio, MAX DWG, DWG Unplugged, Heidi, FLI, FLC, DXF."
+            VALUE "OriginalFilename", "Skeleton.dlu"
+            VALUE "ProductName", "3D Studio MAX"
+            VALUE "ProductVersion", "3.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 225, 63
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Stress"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "",IDC_STATIC,4,0,217,59
+    LTEXT           "Stress 1.0\nFebruary 6, 2009\n\nDeveloped by Diego A. Castaño\nAll Rights Reserved © 2001-2009\nMankua Software Inc.",IDC_STATIC,110,7,109,49
+    CONTROL         108,IDC_MANKUA,"Static",SS_BITMAP,7,7,97,49,WS_EX_CLIENTEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 221
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 59
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_MANKUA_BLACK        BITMAP                  "C:\\WorkspaceSVN\\Mankua\\Logos\\logo_mankua_black_h76.bmp"
+IDB_MANKUA_WHITE        BITMAP                  "C:\\WorkspaceSVN\\Mankua\\Logos\\logo_mankua_white_h76.bmp"
+IDB_HELP                BITMAP                  "Help.bmp"
+IDB_HELP_MASK           BITMAP                  "Help_Mask.bmp"
+IDB_ABOUT               BITMAP                  "About.bmp"
+IDB_ABOUT_MASK          BITMAP                  "About_Mask.bmp"
+IDB_BANNER_CRACKART     BITMAP                  "C:\\WorkspaceSVN\\Mankua\\Logos\\banner_crackart_300.bmp"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_STRESS DIALOGEX 0, 0, 217, 161
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_STR_MAPON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,199,111,8,8
+    CONTROL         "",IDC_STR_MAP,"CustButton",WS_TABSTOP,98,109,98,12
+    CONTROL         "",IDC_MXSTRESS_EDIT,"CustEdit",WS_TABSTOP,57,84,29,10
+    CONTROL         "",IDC_MXSTRESS_SPIN,"SpinnerControl",WS_TABSTOP,87,84,10,10
+    RTEXT           "Max Stress :",IDC_STATIC_MAX,6,84,46,10
+    CONTROL         "",IDC_TLS_STRAINCOL,"ColorSwatch",0x0,57,109,37,13
+    CONTROL         "",IDC_TLS_RELAXCOL,"ColorSwatch",0x0,57,125,37,13
+    CONTROL         "",IDC_TLS_COMPCOL,"ColorSwatch",0x0,57,141,37,13
+    RTEXT           "Tension :",IDC_STATIC_TENSION,15,112,40,8
+    RTEXT           "Compression :",IDC_STATIC_COMP,10,143,45,8
+    RTEXT           "Relax :",IDC_STATIC_RELAX,15,128,40,8
+    CONTROL         "Compute stress using all edges",IDC_STRESS_ALLEDGES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,100,85,111,8
+    CONTROL         "",IDC_MIX_EDIT,"CustEdit",WS_TABSTOP,57,96,29,10
+    CONTROL         "",IDC_MIX_SPIN,"SpinnerControl",WS_TABSTOP,87,96,10,10
+    RTEXT           "Reference mapping channel (0=Vertex Color Ch.):",IDC_STATIC_REFTEXT,7,58,166,8
+    CONTROL         "Tension",IDC_SHOW_STRAIN,"Button",BS_AUTORADIOBUTTON,57,71,37,8
+    CONTROL         "Compression",IDC_SHOW_COMP,"Button",BS_AUTORADIOBUTTON,99,71,55,8
+    CONTROL         "Summatory",IDC_SHOW_SUMM,"Button",BS_AUTORADIOBUTTON,156,71,47,8
+    RTEXT           "Show:",IDC_STATIC_TYPE,13,71,39,8
+    GROUPBOX        "Stress",IDC_STATIC,4,46,209,112
+    CONTROL         "",IDC_RLX_MAP,"CustButton",WS_TABSTOP,98,125,98,12
+    CONTROL         "",IDC_CMP_MAP,"CustButton",WS_TABSTOP,98,141,98,12
+    CONTROL         "",IDC_RLX_MAPON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,199,127,8,8
+    CONTROL         "",IDC_CMP_MAPON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,199,143,8,8
+    RTEXT           "Mix Falloff :",IDC_STATIC_MIX,19,98,36,8
+    CONTROL         "",IDC_MAP_CH,"CustEdit",WS_TABSTOP,175,57,22,10
+    CONTROL         "",IDC_MAP_CHSPIN,"SpinnerControl",WS_TABSTOP,198,57,10,10
+    GROUPBOX        "",IDC_STATIC,4,24,209,21
+    CONTROL         "",IDC_STRESS_ABOUT,"CustButton",WS_TABSTOP,195,29,15,14
+    CONTROL         "",IDC_STRESS_HELP,"CustButton",WS_TABSTOP,179,29,15,14
+    CTEXT           "Stress",IDC_STATIC,7,32,171,8
+    CONTROL         113,IDC_BANNER_CRACKART,"Static",SS_BITMAP | SS_NOTIFY,7,5,203,21,WS_EX_CLIENTEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_STRESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 213
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 137
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_CLASSNAME           "Stress"
+    IDS_PARAMETERS          "Parameters"
+    IDS_MXSTRESS            "Max Stress"
+    IDS_LIBDESC             "Stress Plugin for MAX R3.0 :: By Diego Castaño, Mankua 1999. Visit us at http://www.mankua.com."
+    IDS_STRAINCOL           "Tension Color"
+    IDS_RELAXCOL            "Relax Color"
+    IDS_COMPCOL             "Compression Color"
+    IDS_MIXPARAM            "Mix Falloff"
+    IDS_SHOW                "Show"
+    IDS_STR_MAP             "Tension Map"
+    IDS_RLX_MAP             "Relax Map"
+    IDS_CMP_MAP             "Compression Map"
+    IDS_STR_MAPON           "Tension Map Toggle"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RLX_MAPON           "Relax Map Toggle"
+    IDS_CMP_MAPON           "Compression Map Toggle"
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
