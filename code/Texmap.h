@@ -4,7 +4,7 @@
  |			Skeleton project and code for a Texture Map
  |			3D Studio MAX R3.0
  | 
- |  AUTH:   Diego Castaño
+ |  AUTH:   Diego CastaÃ±o
  |			Mankua
  |
  |  HIST:	Started 11-3-99
@@ -217,16 +217,25 @@ class StressTexmap: public Texmap
 		// From ref
  		int NumRefs() { return NSUBTEX+1; }
 		RefTargetHandle GetReference(int i);
+#if MAX_VERSION_MAJOR < 14
 		void SetReference(int i, RefTargetHandle rtarg);
-
-#if ( MAX_RELEASE < 9000 ) 
-		RefTargetHandle Clone(RemapDir &remap = NoRemap());
 #else
-		RefTargetHandle Clone(RemapDir &remap=DefaultRemapDir());
+private:
+		virtual void SetReference(int i, RefTargetHandle rtarg);
+public:
 #endif
 
-		RefResult NotifyRefChanged( Interval changeInt, RefTargetHandle hTarget, PartID& partID, RefMessage message );
+#if MAX_VERSION_MAJOR < 9
+		RefTargetHandle Clone(RemapDir &remap = NoRemap());
+#else
+		RefTargetHandle Clone(RemapDir &remap);
+#endif
 
+#if MAX_VERSION_MAJOR < 17 //Max 2015
+		RefResult NotifyRefChanged( Interval changeInt, RefTargetHandle hTarget, PartID& partID, RefMessage message );
+#else
+		RefResult NotifyRefChanged( const Interval& changeInt, RefTargetHandle hTarget, PartID& partID, RefMessage message, BOOL propagate );
+#endif		
 		// IO
 		IOResult Save(ISave *isave);
 		IOResult Load(ILoad *iload);
@@ -258,7 +267,5 @@ class SkelTexDlgProc : public ParamMap2UserDlgProc
 		void ShowStressControls(HWND hPanel, BOOL show);
 		void ShowAuthoControls(HWND hPanel, BOOL show);
 };
-
-
 
 #endif
