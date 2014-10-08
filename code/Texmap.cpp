@@ -67,10 +67,10 @@ static void LoadImages()
 	}
 }	
 
-#if ( MAX_RELEASE >= 9000 )
-static INT_PTR CALLBACK AboutDlgProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
-#else
+#if MAX_VERSION_MAJOR < 9
 static BOOL CALLBACK AboutDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) 
+#else
+static INT_PTR CALLBACK AboutDlgProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 #endif
 {
 	switch (msg)
@@ -102,11 +102,11 @@ INT_PTR SkelTexDlgProc::DlgProc(TimeValue t, IParamMap2 *map, HWND hWnd, UINT ms
 
 			iTmp = GetICustButton(GetDlgItem(hWnd,IDC_STRESS_ABOUT));
 			iTmp->SetImage(hAboutImage, 0, 0, 0, 0, 16, 16);
-			iTmp->SetTooltip(TRUE,_T("About UVW Frame"));
+			iTmp->SetTooltip(TRUE,_T("About Stress"));
 
 			iTmp = GetICustButton(GetDlgItem(hWnd,IDC_STRESS_HELP));
 			iTmp->SetImage(hHelpImage, 0, 0, 0, 0, 16, 16);
-			iTmp->SetTooltip(TRUE,_T("About UVW Frame"));
+			iTmp->SetTooltip(TRUE,_T("Stress Help"));
 
 			ReleaseICustButton(iTmp);
 
@@ -119,11 +119,11 @@ INT_PTR SkelTexDlgProc::DlgProc(TimeValue t, IParamMap2 *map, HWND hWnd, UINT ms
 			switch (LOWORD(wParam))
 			{
 				case IDC_BANNER_CRACKART:
-					ShellExecute(NULL, "open", "http://www.crackart.org", NULL, NULL, SW_SHOWNORMAL);
+					ShellExecute(NULL, _T("open"), _T("http://www.crackart.org"), NULL, NULL, SW_SHOWNORMAL);
 				break;
 
 				case IDC_STRESS_HELP:
-					ShellExecute(NULL, "open", "http://www.mankua.com/stress.php", NULL, NULL, SW_SHOWNORMAL);
+					ShellExecute(NULL, _T("open"), _T("http://www.mankua.com/stress.php"), NULL, NULL, SW_SHOWNORMAL);
 				break;
 
 				case IDC_STRESS_ABOUT:
@@ -182,6 +182,10 @@ void SkelTexDlgProc::InitAuthorized(HWND hWnd)
  |	Paramblock2 Descriptor
 \*===========================================================================*/
 
+#if MAX_VERSION_MAJOR < 15 // Max2013
+ #define p_end end
+#endif
+
 static ParamBlockDesc2 stex_param_blk ( tex_params, _T("StressTexmap parameters"),  0, &SkelTexmapCD, P_AUTO_CONSTRUCT + P_AUTO_UI, PBLOCK_REF, 
 	//rollout
 	IDD_STRESS,			IDS_PARAMETERS, 0, 0, NULL, 
@@ -190,76 +194,75 @@ static ParamBlockDesc2 stex_param_blk ( tex_params, _T("StressTexmap parameters"
 		p_refno,		0,
 		p_subtexno,		0,		
 		p_ui,			TYPE_TEXMAPBUTTON, IDC_STR_MAP,
-		end,
+		p_end,
 
 	tex_str_mapon,		_T("strain map on/off"),	TYPE_BOOL,		0,				IDS_STR_MAPON,
 		p_default,		TRUE,
 		p_ui,			TYPE_SINGLECHEKBOX, IDC_STR_MAPON,
-		end,
+		p_end,
 
 	tex_rlx_map,		_T("relax map"),			TYPE_TEXMAP,	P_OWNERS_REF,	IDS_RLX_MAP,
 		p_refno,		1,
 		p_subtexno,		1,
 		p_ui,			TYPE_TEXMAPBUTTON,	IDC_RLX_MAP,
-
-		end,
+		p_end,
+		
 	tex_rlx_mapon,		_T("relax map on/off"),		TYPE_BOOL,		0,				IDS_RLX_MAPON,
 		p_default,		TRUE,
 		p_ui,			TYPE_SINGLECHEKBOX, IDC_RLX_MAPON,
-		end,
+		p_end,
 
 	tex_cmp_map,		_T("comp map"),				TYPE_TEXMAP,	P_OWNERS_REF,	IDS_CMP_MAP,
 		p_refno,		2,
 		p_subtexno,		2,
 		p_ui,			TYPE_TEXMAPBUTTON,	IDC_CMP_MAP,
-
-		end,
+		p_end,
 
 	tex_cmp_mapon,		_T("comp map on/off"),		TYPE_BOOL,		0,				IDS_CMP_MAPON,
 		p_default,		TRUE,
 		p_ui,			TYPE_SINGLECHEKBOX, IDC_CMP_MAPON,
-		end,
+		p_end,
 
 	tex_canal,			_T("tex_canal"),			TYPE_INT,		P_ANIMATABLE,	IDS_MIXPARAM,
 		p_default,		1,
 		p_range,		0, 100,
 		p_ui,			TYPE_SPINNER, EDITTYPE_INT, IDC_MAP_CH,		IDC_MAP_CHSPIN,	1.0f,
-		end,
+		p_end,
 
 	tex_mxstress_param,	_T("tex_mxstress_param"),	TYPE_FLOAT,		P_ANIMATABLE,	IDS_MXSTRESS,
 		p_default,		100.0f,
 		p_range,		0.0f, 999999.99f,
 		p_ui,			TYPE_SPINNER, EDITTYPE_FLOAT, IDC_MXSTRESS_EDIT, IDC_MXSTRESS_SPIN, 0.01f,
-		end,
+		p_end,
 
 	strain_color,	 _T("strain_color"),	TYPE_RGBA,				P_ANIMATABLE,	IDS_STRAINCOL,	
 		p_default,		Color(1.0,0.0,0.0), 
 		p_ui,			TYPE_COLORSWATCH, IDC_TLS_STRAINCOL, 
-		end,
+		p_end,
 
 	relax_color,	 _T("relax_color"),		TYPE_RGBA,				P_ANIMATABLE,	IDS_RELAXCOL,	
 		p_default,		Color(0.0,1.0,0.0), 
 		p_ui,			TYPE_COLORSWATCH, IDC_TLS_RELAXCOL, 
-		end,
+		p_end,
 
 	comp_color,		_T("com_color"),		TYPE_RGBA,				P_ANIMATABLE,	IDS_COMPCOL,	
 		p_default,		Color(0.0,0.0,1.0), 
 		p_ui,			TYPE_COLORSWATCH, IDC_TLS_COMPCOL, 
-		end,
+		p_end,
 
 	tex_mix_param,	_T("tex_mix_param"),	TYPE_FLOAT,		P_ANIMATABLE,	IDS_MIXPARAM,
 		p_default,		2.0f,
 		p_range,		0.0f, 999999.99f,
 		p_ui,			TYPE_SPINNER, EDITTYPE_FLOAT, IDC_MIX_EDIT, IDC_MIX_SPIN, 0.01f,
-		end,
+		p_end,
 
 	tex_show,		_T("tex_show"), TYPE_INT,				0,				IDS_SHOW,
 		p_default,		0,
 		p_range,		0,	2,
 		p_ui,			TYPE_RADIO, 3, IDC_SHOW_STRAIN, IDC_SHOW_COMP, IDC_SHOW_SUMM,
-		end,
+		p_end,
 
-	end
+	p_end
 	);
 
 
@@ -334,8 +337,13 @@ Animatable* StressTexmap::SubAnim(int i) {
 	else return pblock;
 	}
 
+#if MAX_VERSION_MAJOR < 17 //Max 2015
 RefResult StressTexmap::NotifyRefChanged(Interval changeInt, RefTargetHandle hTarget, 
    PartID& partID, RefMessage message ) 
+#else
+RefResult StressTexmap::NotifyRefChanged(const Interval& changeInt, RefTargetHandle hTarget, 
+   PartID& partID, RefMessage message, BOOL propagate ) 
+#endif
 {
 	switch (message) {
 		case REFMSG_CHANGE:
@@ -508,5 +516,3 @@ int StressTexmap::RenderEnd(TimeValue t) {
 	surfs.SetCount(0);
 	return 1;
 	}
-
-
